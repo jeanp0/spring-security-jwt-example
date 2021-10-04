@@ -4,9 +4,8 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity(name = "jg_user")
 @Getter
@@ -40,5 +39,13 @@ public class User {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    public List<String> getRolesName() {
+        if (this.getRoles().isEmpty()) return Collections.emptyList();
+        return this.getRoles()
+                .stream()
+                .map(Role::getName)
+                .collect(Collectors.toList());
     }
 }

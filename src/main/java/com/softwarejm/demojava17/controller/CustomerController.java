@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.Collection;
 
-import static com.softwarejm.demojava17.config.Paths.API_URI;
-import static com.softwarejm.demojava17.config.Paths.CUSTOMERS_URI;
+import static com.softwarejm.demojava17.config.Paths.API_PATH;
+import static com.softwarejm.demojava17.config.Paths.CUSTOMERS_PATH;
 
-@RequestMapping(API_URI + CUSTOMERS_URI)
+@RequestMapping(API_PATH + CUSTOMERS_PATH)
 @RestController
 public class CustomerController {
 
@@ -47,7 +47,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> create(@RequestBody Customer customer) {
         var customerId = customerService.create(customer);
-        URI customerURI = URI.create(String.format("/api/customers/%s", customerId));
+//        URI customerURI = URI.create(String.format("/api/customers/%s", customerId));
         return ResponseEntity.noContent().build();
     }
 

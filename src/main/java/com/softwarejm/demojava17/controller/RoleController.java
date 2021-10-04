@@ -15,7 +15,7 @@ import java.net.URI;
 import static com.softwarejm.demojava17.config.Paths.*;
 
 @RestController
-@RequestMapping(API_ROLES_URI)
+@RequestMapping(ROLES_URI)
 @RequiredArgsConstructor
 public class RoleController {
 
@@ -23,7 +23,7 @@ public class RoleController {
 
     @PostMapping
     public ResponseEntity<Role> newRole(@RequestBody Role role) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(API_URI + ROLES_URI).toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(API_PATH + ROLES_PATH).toUriString());
         return ResponseEntity.created(uri).body(userService.saveRole(role));
     }
 }

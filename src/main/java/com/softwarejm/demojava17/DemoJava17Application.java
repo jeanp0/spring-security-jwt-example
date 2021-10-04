@@ -32,18 +32,18 @@ public class DemoJava17Application {
 			userService.saveRole(new Role(null, ROLE_ADMIN));
 			userService.saveRole(new Role(null, ROLE_SUPER_ADMIN));
 
-			userService.saveUser(new User(null, "Jeanpier Mendoza", "jeanpierm", "12345"));
-			userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold", "12345"));
-			userService.saveUser(new User(null, "Emily Lino ", "emily", "12345"));
-			userService.saveUser(new User(null, "Kaleb Chara", "kaleb", "12345"));
+			userService.saveUser(new User(null, "Jeanpier Mendoza", "jeanpi3rm@gmail.com", "12345"));
+			userService.saveUser(new User(null, "Arnold Schwarzenegger", "arnold@email.com", "12345"));
+			userService.saveUser(new User(null, "Emily Lino ", "emily@email.com", "12345"));
+			userService.saveUser(new User(null, "Kaleb Chara", "kaleb@email.com", "12345"));
 
-			userService.addRoleToUser("jeanpierm", ROLE_USER);
-			userService.addRoleToUser("jeanpierm", ROLE_MANAGER);
-			userService.addRoleToUser("emily", ROLE_MANAGER);
-			userService.addRoleToUser("kaleb", ROLE_ADMIN);
-			userService.addRoleToUser("arnold", ROLE_SUPER_ADMIN);
-			userService.addRoleToUser("arnold", ROLE_ADMIN);
-			userService.addRoleToUser("arnold", ROLE_USER);
+			userService.addRoleToUser("jeanpi3rm@gmail.com", ROLE_USER);
+			userService.addRoleToUser("jeanpi3rm@gmail.com", ROLE_MANAGER);
+			userService.addRoleToUser("emily@email.com", ROLE_MANAGER);
+			userService.addRoleToUser("kaleb@email.com", ROLE_ADMIN);
+			userService.addRoleToUser("arnold@email.com", ROLE_SUPER_ADMIN);
+			userService.addRoleToUser("arnold@email.com", ROLE_ADMIN);
+			userService.addRoleToUser("arnold@email.com", ROLE_USER);
 		};
 	}
 }

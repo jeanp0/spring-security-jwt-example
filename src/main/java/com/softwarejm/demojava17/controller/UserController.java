@@ -15,7 +15,7 @@ import java.util.Collection;
 import static com.softwarejm.demojava17.config.Paths.*;
 
 @RestController
-@RequestMapping(API_USERS_URI)
+@RequestMapping(USERS_URI)
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -34,11 +34,11 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> newUser(@RequestBody User user) {
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(API_URI + USERS_URI).toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path(API_PATH + USERS_PATH).toUriString());
         return ResponseEntity.created(uri).body(userService.saveUser(user));
     }
 
-    @PatchMapping("/{username}" + ROLES_URI + "/{roleName}")
+    @PatchMapping("/{username}" + ROLES_PATH + "/{roleName}")
     public ResponseEntity<Role> addRoleToUser(@PathVariable String username, @PathVariable String roleName) {
         userService.addRoleToUser(username, roleName);
         return ResponseEntity.noContent().build();

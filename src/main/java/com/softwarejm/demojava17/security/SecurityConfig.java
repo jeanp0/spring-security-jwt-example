@@ -2,6 +2,7 @@ package com.softwarejm.demojava17.security;
 
 import com.softwarejm.demojava17.filter.CustomAuthenticationFilter;
 import com.softwarejm.demojava17.filter.CustomAuthorizationFilter;
+import com.softwarejm.demojava17.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserService userService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,15 +38,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CustomAuthenticationFilter authenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        CustomAuthenticationFilter authenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean(), userService);
         CustomAuthorizationFilter authorizationFilter = new CustomAuthorizationFilter();
 
-        authenticationFilter.setFilterProcessesUrl(API_LOGIN_URI);
+        authenticationFilter.setFilterProcessesUrl(LOGIN_URI);
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers(API_LOGIN_URI + "/**", API_REFRESH_TOKEN_URI + "/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, API_USERS_URI + "/**").hasAnyAuthority(ROLE_USER);
-        http.authorizeRequests().antMatchers(POST, API_USERS_URI + "/**").hasAnyAuthority(ROLE_ADMIN);
+        http.authorizeRequests().antMatchers(LOGIN_URI + "/**", REFRESH_TOKEN_URI + "/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, USERS_URI + "/**").hasAnyAuthority(ROLE_USER);
+        http.authorizeRequests().antMatchers(POST, USERS_URI + "/**").hasAnyAuthority(ROLE_ADMIN);
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(authenticationFilter);
         http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
