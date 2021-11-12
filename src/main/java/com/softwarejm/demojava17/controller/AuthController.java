@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 import static com.softwarejm.demojava17.config.Names.BEARER;
 import static com.softwarejm.demojava17.config.Paths.API_PATH;

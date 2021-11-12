@@ -8,13 +8,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.Collection;
 
-import static com.softwarejm.demojava17.config.Paths.API_PATH;
-import static com.softwarejm.demojava17.config.Paths.CUSTOMERS_PATH;
+import static com.softwarejm.demojava17.config.Paths.*;
 
-@RequestMapping(API_PATH + CUSTOMERS_PATH)
+@RequestMapping(CUSTOMERS_URI)
 @RestController
 public class CustomerController {
 
