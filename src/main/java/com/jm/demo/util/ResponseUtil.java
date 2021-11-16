@@ -35,7 +35,7 @@ public class ResponseUtil {
     public static void responseBadCredentials(HttpServletResponse response, AuthenticationException failed) throws IOException {
         response.setHeader(HEADER_ERROR, failed.getMessage());
         response.setStatus(FORBIDDEN.value());
-        Map<String, String> payload = Map.of(Keys.MESSAGE_KEY, failed.getMessage());
+        Map<String, String> payload = Map.of(Keys.MESSAGE_KEY, "Username or password incorrect");
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), payload);
     }
