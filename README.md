@@ -3,7 +3,7 @@
 ## Technologies used 
 * Java 11
 * Spring Boot (Spring Web)
-* Spring Security (stateless with JWT)
+* Spring Security (stateless with JWT and roles)
 * JPA (hibernate)
 * PostgreSQL (with docker)
 * OpenAPI 3 [springdoc](https://springdoc.org/)
@@ -21,22 +21,34 @@ $ docker-compose down
 
 ## Captures
 
-### Swagger UI of API RESTful
+### Swagger UI
 
-![Swagger UI of RESTful API](https://github.com/jeanp0/rest-api-nestjs-mongo/blob/main/captures/1.png?raw=true)
+![Swagger UI](https://github.com/jeanp0/rest-api-spring-security-jwt/blob/main/captures/1.png?raw=true)
 
-### Schemas of API RESTful
+### Schemas by OpenAPI 3
 
-![Schemas of API RESTful](https://github.com/jeanp0/rest-api-nestjs-mongo/blob/main/captures/2.png?raw=true)
+![Schemas by OpenAPI 3](https://github.com/rest-api-spring-security-jwt/blob/main/captures/2.png?raw=true)
 
-### Test login endpoint
+### Success login
 
-![Test login endpoint](https://github.com/jeanp0/rest-api-nestjs-mongo/blob/main/captures/3.png?raw=true)
+![Success login](https://github.com/rest-api-spring-security-jwt/blob/main/captures/3.png?raw=true)
 
-### Test get user by id endpoint without token
+### Fail login
 
-![Test get user by id endpoint without token](https://github.com/jeanp0/rest-api-nestjs-mongo/blob/main/captures/5.png?raw=true)
+![Fail login](https://github.com/rest-api-spring-security-jwt/blob/main/captures/4.png?raw=true)
 
-### Test get user by id endpoint with token
+### GET with token expired
 
-![Test get user by id endpoint with token](https://github.com/jeanp0/rest-api-nestjs-mongo/blob/main/captures/4.png?raw=true)
+![GET with token expired](https://github.com/rest-api-spring-security-jwt/blob/main/captures/5.png?raw=true)
+
+### GET without token
+
+![GET without token](https://github.com/rest-api-spring-security-jwt/blob/main/captures/6.png?raw=true)
+
+### GET with valid token
+
+![GET with valid token](https://github.com/rest-api-spring-security-jwt/blob/main/captures/7.png?raw=true)
+
+### Refresh token
+
+![Refresh token](https://github.com/rest-api-spring-security-jwt/blob/main/captures/8.png?raw=true)
