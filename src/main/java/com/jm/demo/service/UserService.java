@@ -1,9 +1,10 @@
 package com.jm.demo.service;
 
+import com.jm.demo.auth.UserDetailsImpl;
 import com.jm.demo.data.dto.UserDto;
 import com.jm.demo.data.model.Role;
 import com.jm.demo.data.model.User;
-import com.jm.demo.exception.NotFoundException;
+import com.jm.demo.config.exception.NotFoundException;
 import com.jm.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +45,7 @@ public class UserService implements UserDetailsService {
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        return new UserDetailsImpl(user, authorities);
     }
 
     public Collection<User> findAll() {

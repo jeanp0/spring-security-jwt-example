@@ -85,7 +85,7 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User or role not found",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
     })
-    @PatchMapping(path = "/{userId}" + Paths.ROLES_PATH + "/{roleName}", consumes = APPLICATION_JSON_VALUE)
+    @PatchMapping(path = "/{userId}" + Paths.ROLES_PATH + "/{roleName}")
     public ResponseEntity<Role> addRoleToUser(@PathVariable Integer userId, @PathVariable String roleName) {
         userService.addRoleByUserId(userId, roleName);
         return ResponseEntity.noContent().build();

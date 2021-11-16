@@ -1,4 +1,4 @@
-package com.jm.demo.config.security;
+package com.jm.demo.auth;
 
 import com.jm.demo.util.JwtUtil;
 import com.jm.demo.util.ResponseUtil;
@@ -23,7 +23,7 @@ import static com.jm.demo.config.constants.Paths.*;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Slf4j
-public class CustomAuthorizationFilter extends OncePerRequestFilter {
+public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
@@ -49,9 +49,9 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             List<SimpleGrantedAuthority> authorities = Arrays.stream(roles)
                     .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
-            UsernamePasswordAuthenticationToken authenticationToken =
+            UsernamePasswordAuthenticationToken authToken =
                     new UsernamePasswordAuthenticationToken(username, null, authorities);
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            SecurityContextHolder.getContext().setAuthentication(authToken);
             filterChain.doFilter(request, response);
         } catch (Exception exception) {
             log.error("Error logging in {}", exception.getMessage());

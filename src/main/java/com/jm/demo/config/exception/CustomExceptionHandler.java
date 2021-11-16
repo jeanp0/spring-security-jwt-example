@@ -1,4 +1,4 @@
-package com.jm.demo.exception;
+package com.jm.demo.config.exception;
 
 import com.jm.demo.data.dto.ErrorResponseDto;
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +19,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.validation.ConstraintViolationException;
 import java.time.Instant;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-@ControllerAdvice(annotations = RestController.class)
+@ControllerAdvice
 @Slf4j
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -85,6 +83,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * Build detailed information about the exception in the response
+     *
      */
     private ResponseEntity<Object> getExceptionResponseEntity(final Exception ex,
                                                               final HttpStatus status,

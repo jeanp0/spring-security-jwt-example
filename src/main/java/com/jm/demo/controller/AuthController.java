@@ -2,7 +2,7 @@ package com.jm.demo.controller;
 
 import com.jm.demo.config.constants.Names;
 import com.jm.demo.data.dto.ErrorResponseDto;
-import com.jm.demo.exception.BadRequestException;
+import com.jm.demo.config.exception.BadRequestException;
 import com.jm.demo.util.JwtUtil;
 import com.jm.demo.util.ResponseUtil;
 import com.jm.demo.data.model.User;

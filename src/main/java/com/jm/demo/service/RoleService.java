@@ -2,7 +2,7 @@ package com.jm.demo.service;
 
 import com.jm.demo.data.dto.RoleDto;
 import com.jm.demo.data.model.Role;
-import com.jm.demo.exception.NotFoundException;
+import com.jm.demo.config.exception.NotFoundException;
 import com.jm.demo.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

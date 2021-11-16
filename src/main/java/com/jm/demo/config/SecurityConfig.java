@@ -1,5 +1,7 @@
-package com.jm.demo.config.security;
+package com.jm.demo.config;
 
+import com.jm.demo.auth.JwtAuthenticationFilter;
+import com.jm.demo.auth.JwtAuthorizationFilter;
 import com.jm.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,6 +27,15 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String ROOT_ENTRY_POINT = "/";
+    private static final String SWAGGER_UI_ENTRY_POINT = SWAGGER_UI_PATH + "/**";
+    private static final String SWAGGER_HTML_ENTRY_POINT = SWAGGER_UI_PATH + ".html/**";
+    private static final String SWAGGER_RESOURCES_ENTRY_POINT = SWAGGER_RESOURCES_PATH + "/**";
+    private static final String API_DOCS_ENTRY_POINT = API_DOCS_PATH + "/**";
+    private static final String LOGIN_ENTRY_POINT = LOGIN_PATH + "/**";
+    private static final String REFRESH_TOKEN_ENTRY_POINT = REFRESH_TOKEN_PATH + "/**";
+    private static final String USERS_ENTRY_POINT = USERS_PATH + "/**";
+
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserService userService;
@@ -36,29 +47,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CustomAuthenticationFilter authenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean(), userService);
-        CustomAuthorizationFilter authorizationFilter = new CustomAuthorizationFilter();
+        JwtAuthenticationFilter authenticationFilter = new JwtAuthenticationFilter(authenticationManagerBean(), userService);
+        JwtAuthorizationFilter authorizationFilter = new JwtAuthorizationFilter();
 
         authenticationFilter.setFilterProcessesUrl(LOGIN_PATH);
+
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        // Autorizado para todos
-        http.authorizeRequests().antMatchers(
-                "/**",
-                API_DOCS_PATH + "/**",
-                SWAGGER_UI_PATH + "/**",
-                SWAGGER_RESOURCES_PATH + "/**",
-                LOGIN_PATH + "/**",
-                REFRESH_TOKEN_PATH + "/**"
-        ).permitAll();
-        // Autorizado para rol User
-        http.authorizeRequests().antMatchers(GET, USERS_PATH + "/**").hasAnyAuthority(ROLE_USER);
-        // Autorizado para rol Admin
-        http.authorizeRequests().antMatchers(POST, USERS_PATH + "/**").hasAnyAuthority(ROLE_ADMIN);
-        // Cualquier petición restante requiere estar autenticado
-        http.authorizeRequests().anyRequest().authenticated();
-        http.addFilter(authenticationFilter);
-        http.addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilter(authenticationFilter)
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers(
+                        ROOT_ENTRY_POINT,
+                        API_DOCS_ENTRY_POINT,
+                        SWAGGER_UI_ENTRY_POINT,
+                        SWAGGER_HTML_ENTRY_POINT,
+                        SWAGGER_RESOURCES_ENTRY_POINT,
+                        LOGIN_ENTRY_POINT,
+                        REFRESH_TOKEN_ENTRY_POINT
+                ).permitAll()
+                .antMatchers(GET, USERS_ENTRY_POINT).hasAnyAuthority(ROLE_USER)
+                .antMatchers(POST, USERS_ENTRY_POINT).hasAnyAuthority(ROLE_ADMIN)
+                .anyRequest().authenticated();
     }
 
     @Bean
@@ -66,4 +80,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }
