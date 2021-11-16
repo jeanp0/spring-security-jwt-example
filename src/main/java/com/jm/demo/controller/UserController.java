@@ -1,7 +1,7 @@
 package com.jm.demo.controller;
 
 import com.jm.demo.config.constants.Paths;
-import com.jm.demo.data.dto.ErrorResponseDto;
+import com.jm.demo.data.dto.ErrorResponse;
 import com.jm.demo.data.dto.UserDto;
 import com.jm.demo.data.model.Role;
 import com.jm.demo.data.model.User;
@@ -48,7 +48,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User successfully obtained"),
             @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @GetMapping(path = "/{userId}")
     public ResponseEntity<User> findById(@PathVariable Integer userId) {
@@ -70,7 +70,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "User successfully updated"),
             @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @PutMapping(path = "/{userId}", consumes = APPLICATION_JSON_VALUE)
     public ResponseEntity<User> update(@PathVariable Integer userId, @Valid @RequestBody UserDto user) {
@@ -83,7 +83,7 @@ public class UserController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Role successfully added to user"),
             @ApiResponse(responseCode = "404", description = "User or role not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @PatchMapping(path = "/{userId}" + Paths.ROLES_PATH + "/{roleName}")
     public ResponseEntity<Role> addRoleToUser(@PathVariable Integer userId, @PathVariable String roleName) {

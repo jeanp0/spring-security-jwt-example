@@ -1,7 +1,7 @@
 package com.jm.demo.controller;
 
 import com.jm.demo.config.constants.Names;
-import com.jm.demo.data.dto.ErrorResponseDto;
+import com.jm.demo.data.dto.ErrorResponse;
 import com.jm.demo.config.exception.BadRequestException;
 import com.jm.demo.util.JwtUtil;
 import com.jm.demo.util.ResponseUtil;
@@ -37,7 +37,7 @@ public class AuthController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "New access token successfully obtained"),
             @ApiResponse(responseCode = "404", description = "User not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))),
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @PostMapping(path = REFRESH_TOKEN_PATH)
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

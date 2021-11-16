@@ -1,6 +1,6 @@
 package com.jm.demo.config.exception;
 
-import com.jm.demo.data.dto.ErrorResponseDto;
+import com.jm.demo.data.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -89,7 +88,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                                                               final HttpStatus status,
                                                               final WebRequest request,
                                                               final List<String> errors) {
-        final ErrorResponseDto body = new ErrorResponseDto();
+        final ErrorResponse body = new ErrorResponse();
         final String path = request.getDescription(false);
         body.setTimestamp(Instant.now());
         body.setStatus(status.value());

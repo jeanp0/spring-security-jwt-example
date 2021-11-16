@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorResponseDto {
+public class ErrorResponse {
 
     private Instant timestamp;
 
