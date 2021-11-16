@@ -50,7 +50,8 @@ public class ResponseUtil {
         response.setContentType(APPLICATION_JSON_VALUE);
         Map<String, String> payload = new java.util.HashMap<>(JwtUtil.mapTokens(accessToken, refreshToken));
         payload.put("uid", user.getUserId().toString());
-        payload.put("username", user.getEmail());
+        payload.put("username", user.getUsername());
+        payload.put("email", user.getEmail());
         payload.put("name", user.getName());
         new ObjectMapper().writeValue(response.getOutputStream(), payload);
     }
