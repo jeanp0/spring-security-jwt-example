@@ -29,6 +29,7 @@ public class UserService implements UserDetailsService {
     private final static String FIND_LOG = "Fetching user {}";
     private final static String CREATE_LOG = "Creating user {}";
     private final static String UPDATE_LOG = "Updating user {}";
+    private final static String DELETE_LOG = "Deleting user {}";
     private final static String ADD_ROLE_LOG = "Adding role {} to user {}";
     private final static String NOT_FOUND_BY_ID = "User with id %s not found";
     private final static String NOT_FOUND_BY_USERNAME = "User with username %s not found";
@@ -95,5 +96,10 @@ public class UserService implements UserDetailsService {
         User user = findByUsername(username);
         Role role = roleService.findByName(roleName);
         user.getRoles().add(role);
+    }
+
+    public void delete(Integer userId) {
+        log.info(DELETE_LOG, userId);
+        userRepository.deleteById(userId);
     }
 }

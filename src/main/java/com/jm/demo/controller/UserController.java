@@ -81,13 +81,25 @@ public class UserController {
 
     @Operation(summary = "Add role to user", description = "Add role to user description")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Role successfully added to user"),
+            @ApiResponse(responseCode = "204", description = "Role successfully added to user"),
             @ApiResponse(responseCode = "404", description = "User or role not found",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
     })
     @PatchMapping(path = "/{userId}" + Paths.ROLES_PATH + "/{roleName}")
     public ResponseEntity<Role> addRoleToUser(@PathVariable Integer userId, @PathVariable String roleName) {
         userService.addRoleByUserId(userId, roleName);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Delete a user", description = "Delete a user description")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "User successfully deleted"),
+            @ApiResponse(responseCode = "404", description = "User not found",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
+    })
+    @DeleteMapping(path = "/{userId}")
+    public ResponseEntity<Void> delete(@PathVariable Integer userId) {
+        userService.delete(userId);
         return ResponseEntity.noContent().build();
     }
 }
