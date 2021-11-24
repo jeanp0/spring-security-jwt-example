@@ -1,0 +1,18 @@
+### LOGIN USER
+
+POST http://localhost:8080/api/login
+content-type: application/json
+
+{
+  "username": "jeanpierms",
+  "password": "12345"
+}
+
+### LOGIN USER bad
+
+POST http://localhost:8080/api/login
+
+{
+  "username": "jeanpierms",
+  "password": "12345"
+}

@@ -32,21 +32,24 @@ public class ResponseUtil {
         new ObjectMapper().writeValue(response.getOutputStream(), payload);
     }
 
-    public static void responseBadCredentials(HttpServletResponse response, AuthenticationException failed) throws IOException {
+    public static void responseBadCredentials(HttpServletResponse response, AuthenticationException failed)
+            throws IOException {
         response.setHeader(HEADER_ERROR, failed.getMessage());
         response.setStatus(FORBIDDEN.value());
-        Map<String, String> payload = Map.of(Keys.MESSAGE_KEY, "Username or password incorrect");
+        String message = "Username or password incorrect";
+        Map<String, String> payload = Map.of(Keys.MESSAGE_KEY, message);
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), payload);
     }
 
-    public static void responseTokens(HttpServletResponse response, String accessToken, String refreshToken) throws IOException {
+    public static void responseTokens(HttpServletResponse response, String accessToken, String refreshToken)
+            throws IOException {
         response.setContentType(APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), JwtUtil.mapTokens(accessToken, refreshToken));
     }
 
     public static void responseTokensWithUserInfo(HttpServletResponse response, String accessToken, String refreshToken,
-                                                  User user) throws IOException {
+            User user) throws IOException {
         response.setContentType(APPLICATION_JSON_VALUE);
         Map<String, String> payload = new java.util.HashMap<>(JwtUtil.mapTokens(accessToken, refreshToken));
         payload.put("uid", user.getUserId().toString());
