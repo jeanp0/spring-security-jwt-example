@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Configuration;
 public class OpenAPIConfig {
 
     @Bean
-    public OpenAPI customOpenAPI(@Value("${application-description}") String appDescription, @Value("${application-version}") String appVersion) {
+    public OpenAPI customOpenAPI(@Value("${application-description}") String appDescription,
+                                 @Value("${application-version}") String appVersion) {
         return new OpenAPI()
                 .components(new Components()
                         .addSecuritySchemes("bearer-key",

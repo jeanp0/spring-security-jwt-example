@@ -1,6 +1,7 @@
 package com.jm.demo.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -31,6 +32,7 @@ public class User extends BaseEntity {
     private String username;
 
     @Column(nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

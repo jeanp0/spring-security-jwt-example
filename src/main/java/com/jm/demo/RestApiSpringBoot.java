@@ -46,6 +46,7 @@ public class RestApiSpringBoot {
 
             userService.addRoleByUsername("jeanpierm", ROLE_USER);
             userService.addRoleByUsername("jeanpierm", ROLE_MANAGER);
+            userService.addRoleByUsername("jeanpierm", ROLE_ADMIN);
             userService.addRoleByUsername("emily", ROLE_MANAGER);
             userService.addRoleByUsername("kaleb", ROLE_ADMIN);
             userService.addRoleByUsername("arnold", ROLE_SUPER_ADMIN);

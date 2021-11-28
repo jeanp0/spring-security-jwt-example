@@ -1,4 +1,4 @@
-package com.jm.demo.config.exception;
+package com.jm.demo.controller;
 
 import com.jm.demo.data.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 @Slf4j
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
 
     public static final String ACCESS_DENIED = "Access denied!";
     public static final String INVALID_REQUEST = "Invalid request";
