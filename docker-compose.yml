@@ -11,13 +11,21 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=database
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
 
   pgadmin:
     image: dpage/pgadmin4
+    ports:
+      - "80:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: "jeanpi3rm@gmail.com"
       PGADMIN_DEFAULT_PASSWORD: "31416"
-    ports:
-      - "80:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
+
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
+  pgadmin:
