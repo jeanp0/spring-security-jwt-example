@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -18,6 +20,10 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
     private final ModelMapper modelMapper;
+
+    public Collection<Role> findAll() {
+        return roleRepository.findAll();
+    }
 
     public Role create(RoleDto role) {
         log.info("Saving new role {} to database", role.getName());

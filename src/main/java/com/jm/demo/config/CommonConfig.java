@@ -29,24 +29,27 @@ public class CommonConfig {
     @Bean
     CommandLineRunner run(UserService userService, RoleService roleService) {
         return args -> {
-            roleService.create(new RoleDto(ROLE_USER));
-            roleService.create(new RoleDto(ROLE_MANAGER));
-            roleService.create(new RoleDto(ROLE_ADMIN));
-            roleService.create(new RoleDto(ROLE_SUPER_ADMIN));
+            if (roleService.findAll().isEmpty()) {
+                roleService.create(new RoleDto(ROLE_USER));
+                roleService.create(new RoleDto(ROLE_MANAGER));
+                roleService.create(new RoleDto(ROLE_ADMIN));
+                roleService.create(new RoleDto(ROLE_SUPER_ADMIN));
+            }
+            if (userService.findAll().isEmpty()) {
+                userService.create(new UserDto("Jeanpier Mendoza", "jeanpi3rm@gmail.com", "jeanpierm", "314159"));
+                userService.create(new UserDto("Arnold Schwarzenegger", "arnold@email.com", "arnold", "12345"));
+                userService.create(new UserDto("Emily Lino", "emily@email.com", "emily", "12345"));
+                userService.create(new UserDto("Kaleb Chara", "kaleb@email.com", "kaleb", "12345"));
 
-            userService.create(new UserDto("Jeanpier Mendoza", "jeanpi3rm@gmail.com", "jeanpierm", "12345"));
-            userService.create(new UserDto("Arnold Schwarzenegger", "arnold@email.com", "arnold", "12345"));
-            userService.create(new UserDto("Emily Lino", "emily@email.com", "emily", "12345"));
-            userService.create(new UserDto("Kaleb Chara", "kaleb@email.com", "kaleb", "12345"));
-
-            userService.addRoleByUsername("jeanpierm", ROLE_USER);
-            userService.addRoleByUsername("jeanpierm", ROLE_MANAGER);
-            userService.addRoleByUsername("jeanpierm", ROLE_ADMIN);
-            userService.addRoleByUsername("emily", ROLE_MANAGER);
-            userService.addRoleByUsername("kaleb", ROLE_ADMIN);
-            userService.addRoleByUsername("arnold", ROLE_SUPER_ADMIN);
-            userService.addRoleByUsername("arnold", ROLE_ADMIN);
-            userService.addRoleByUsername("arnold", ROLE_USER);
+                userService.addRoleByUsername("jeanpierm", ROLE_USER);
+                userService.addRoleByUsername("jeanpierm", ROLE_MANAGER);
+                userService.addRoleByUsername("jeanpierm", ROLE_ADMIN);
+                userService.addRoleByUsername("emily", ROLE_MANAGER);
+                userService.addRoleByUsername("kaleb", ROLE_ADMIN);
+                userService.addRoleByUsername("arnold", ROLE_SUPER_ADMIN);
+                userService.addRoleByUsername("arnold", ROLE_ADMIN);
+                userService.addRoleByUsername("arnold", ROLE_USER);
+            }
         };
     }
 }

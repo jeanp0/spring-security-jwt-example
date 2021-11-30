@@ -27,7 +27,7 @@ services:
       - postgres
 
   spring-app:
-    image: jeanpierm/rest-api-spring:latest
+    image: jeanpierm/rest-api-spring-boot:latest
     build:
       context: . # Dockerfile on the same directory
     ports:
