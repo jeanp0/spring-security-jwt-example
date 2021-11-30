@@ -29,7 +29,7 @@ services:
   spring-app:
     image: jeanpierm/rest-api-spring:latest
     build:
-      context: .
+      context: . # Dockerfile on the same directory
     ports:
       - "8080:8080"
     environment:
