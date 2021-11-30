@@ -11,7 +11,7 @@
         <!-- lookup parent from repository -->
     </parent>
     <groupId>com.jm</groupId>
-    <artifactId>rest-api-spring-boot</artifactId>
+    <artifactId>demo</artifactId>
     <version>1.0.0</version>
     <name>rest-api-spring-boot</name>
     <description>RESTful API built with Spring Boot, Spring Security with JWT, JPA, PostgreSQL, validations, custom
