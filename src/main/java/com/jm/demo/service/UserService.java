@@ -4,19 +4,23 @@ import com.jm.demo.auth.UserDetailsImpl;
 import com.jm.demo.data.dto.UserDto;
 import com.jm.demo.data.model.Role;
 import com.jm.demo.data.model.User;
-import com.jm.demo.config.exception.NotFoundException;
+import com.jm.demo.exceptions.ConflictException;
+import com.jm.demo.exceptions.NotFoundException;
 import com.jm.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -68,6 +72,8 @@ public class UserService implements UserDetailsService {
 
     public User create(UserDto user) {
         log.info(CREATE_LOG, user.getName());
+        checkUsername(user.getUsername());
+        checkEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         final User userMapped = modelMapper.map(user, User.class);
         return userRepository.save(userMapped);
@@ -101,5 +107,19 @@ public class UserService implements UserDetailsService {
     public void delete(Integer userId) {
         log.info(DELETE_LOG, userId);
         userRepository.deleteById(userId);
+    }
+
+    private void checkUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            throw new ConflictException("The username already exists.");
+        }
+    }
+
+    private void checkEmail(String email) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+            throw new ConflictException("The email already exists.");
+        }
     }
 }

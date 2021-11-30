@@ -1,4 +1,4 @@
-package com.jm.demo.config.constants;
+package com.jm.demo.constants;
 
 public class Paths {
     public final static String LOGIN_PATH = "/login";

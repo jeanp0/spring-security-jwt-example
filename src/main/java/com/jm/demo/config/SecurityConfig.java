@@ -15,9 +15,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static com.jm.demo.config.constants.Names.ROLE_ADMIN;
-import static com.jm.demo.config.constants.Names.ROLE_USER;
-import static com.jm.demo.config.constants.Paths.*;
+import static com.jm.demo.constants.Names.ROLE_ADMIN;
+import static com.jm.demo.constants.Names.ROLE_USER;
+import static com.jm.demo.constants.Paths.*;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -35,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_ENTRY_POINT = LOGIN_PATH + "/**";
     private static final String REFRESH_TOKEN_ENTRY_POINT = REFRESH_TOKEN_PATH + "/**";
     private static final String USERS_ENTRY_POINT = USERS_PATH + "/**";
+    private static final String ERROR_ENTRY_POINT = "/error";
 
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -68,10 +69,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         SWAGGER_HTML_ENTRY_POINT,
                         SWAGGER_RESOURCES_ENTRY_POINT,
                         LOGIN_ENTRY_POINT,
-                        REFRESH_TOKEN_ENTRY_POINT
+                        REFRESH_TOKEN_ENTRY_POINT,
+                        ERROR_ENTRY_POINT
                 ).permitAll()
+                .antMatchers(POST, USERS_ENTRY_POINT).permitAll() // permit register
                 .antMatchers(GET, USERS_ENTRY_POINT).hasAnyAuthority(ROLE_USER)
-                .antMatchers(POST, USERS_ENTRY_POINT).hasAnyAuthority(ROLE_ADMIN)
                 .anyRequest().authenticated();
     }
 

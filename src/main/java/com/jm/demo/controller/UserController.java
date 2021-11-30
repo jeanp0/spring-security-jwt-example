@@ -1,6 +1,6 @@
 package com.jm.demo.controller;
 
-import com.jm.demo.config.constants.Paths;
+import com.jm.demo.constants.Paths;
 import com.jm.demo.data.dto.ErrorResponse;
 import com.jm.demo.data.dto.UserDto;
 import com.jm.demo.data.model.Role;

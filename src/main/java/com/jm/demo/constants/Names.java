@@ -1,4 +1,4 @@
-package com.jm.demo.config.constants;
+package com.jm.demo.constants;
 
 public class Names {
     public static final String BEARER = "Bearer ";

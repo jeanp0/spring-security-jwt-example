@@ -95,7 +95,8 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         body.setErrors(errors);
         body.setType(ex.getClass().getSimpleName());
         body.setPath(path);
-        body.setMessage(getMessageForStatus(status));
+        body.setMessage(errors.get(0));
+        body.setReason(getReasonForStatus(status));
         final String errorsMessage = CollectionUtils.isEmpty(errors)
                 ? status.getReasonPhrase()
                 : errors.stream()
@@ -105,7 +106,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, status);
     }
 
-    private String getMessageForStatus(HttpStatus status) {
+    private String getReasonForStatus(HttpStatus status) {
         switch (status) {
             case UNAUTHORIZED:
                 return ACCESS_DENIED;

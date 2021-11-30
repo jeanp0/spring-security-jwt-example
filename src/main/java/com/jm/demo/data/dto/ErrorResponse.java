@@ -16,6 +16,8 @@ public class ErrorResponse {
 
     private int status;
 
+    private String reason;
+
     private List<String> errors;
 
     private String type;

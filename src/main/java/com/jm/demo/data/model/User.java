@@ -25,10 +25,10 @@ public class User extends BaseEntity {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
-    @Column
+    @Column(unique = true)
     private String username;
 
     @Column(nullable = false)

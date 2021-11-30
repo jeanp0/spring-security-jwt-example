@@ -17,9 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.jm.demo.config.constants.Keys.*;
-import static com.jm.demo.config.constants.Names.BEARER;
-import static com.jm.demo.config.constants.Paths.*;
+import static com.jm.demo.constants.Names.BEARER;
+import static com.jm.demo.constants.Paths.*;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Slf4j
@@ -45,7 +44,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         try {
             String token = authorizationHeader.substring(BEARER.length());
             String username = JwtUtil.getSubject(token);
-            String[] roles = JwtUtil.getClaim(token, ROLES_CLAIM_KEY).asArray(String.class);
+            String[] roles = JwtUtil.getClaim(token, JwtInfo.ROLES_CLAIM_KEY).asArray(String.class);
             List<SimpleGrantedAuthority> authorities = Arrays.stream(roles)
                     .map(SimpleGrantedAuthority::new)
                     .collect(Collectors.toList());
