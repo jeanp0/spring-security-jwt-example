@@ -20,7 +20,7 @@ $ docker-compose up -d
 $ docker-compose down
 ```
 
-## Dockerization
+## Microservice (Dockerization)
 
 ```bash
 $ docker build -t jeanpierm/rest-api-spring-boot .
