@@ -1,6 +1,5 @@
 package com.jm.demo.controller;
 
-import com.jm.demo.auth.UserDetailsImpl;
 import com.jm.demo.constants.Names;
 import com.jm.demo.data.dto.ErrorResponse;
 import com.jm.demo.exceptions.BadRequestException;
@@ -16,9 +15,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

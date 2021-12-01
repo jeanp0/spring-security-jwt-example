@@ -1,5 +1,5 @@
 FROM eclipse-temurin:11-jdk
-MAINTAINER jeanpiermendoza@outlook.com
+LABEL MAINTAINER="jeanpiermendoza@outlook.com"
 #RUN addgroup -S spring && adduser -S spring -G spring
 #USER spring:spring
 ARG JAR_FILE=target/*.jar
