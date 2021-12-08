@@ -14,7 +14,7 @@
 
 ```bash
 # up containers
-$ docker-compose up -d
+$ docker-compose up -d postgres pgadmin
 
 # down containers
 $ docker-compose down
@@ -23,20 +23,20 @@ $ docker-compose down
 ## Microservice (Dockerization)
 
 ```bash
-$ docker build -t jeanpierm/rest-api-spring-boot .
+$ docker build -t jeanp0/rest-api-spring-boot .
 ```
 
 Run a **postgres**, **pgadmin** and **spring-app** images with docker-compose. The **spring-app** image is built automatically if it doesn't exist.
 
 ```bash
 # up containers
-$ docker-compose -f production.yml up -d
+$ docker-compose up -d
 
 # down containers
-$ docker-compose -f production.yml down
+$ docker-compose down
 
 # view logs
-$ docker-compose -f production.yml logs -f
+$ docker-compose logs -f
 ```
 
 
