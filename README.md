@@ -1,14 +1,17 @@
 # RESTful API Spring Boot
 
-## Technologies used 
-* Java 11
-* Spring Boot (Spring Web)
-* Spring Security (stateless with JWT and roles)
-* JPA (hibernate)
-* Javax Validations to validate the properties of the entities in the requests.
-* PostgreSQL 14 + pgAdmin (with docker)
-* OpenAPI 3 [springdoc](https://springdoc.org/)
-* ModelMapper (for mapping dtos to jpa entities easily)
+![Spring Boot + JPA](https://miro.medium.com/max/1332/0*ieGtFeTAwqp0izk0.png)
+
+## Technologies used
+
+- Java 11
+- Spring Boot (Spring Web)
+- Spring Security (stateless with JWT and roles)
+- JPA (hibernate)
+- Javax Validations to validate the properties of the entities in the requests.
+- PostgreSQL 14 + pgAdmin (with docker)
+- OpenAPI 3 [springdoc](https://springdoc.org/)
+- ModelMapper (for mapping dtos to jpa entities easily)
 
 ## Run PostgreSQL + pgAdmin with Docker
 
@@ -23,7 +26,7 @@ $ docker-compose down
 ## Microservice (Dockerization)
 
 ```bash
-$ docker build -t jeanp0/rest-api-spring-boot .
+docker build -t jeanp0/rest-api-spring-boot .
 ```
 
 Run a **postgres**, **pgadmin** and **spring-app** images with docker-compose. The **spring-app** image is built automatically if it doesn't exist.
@@ -38,7 +41,6 @@ $ docker-compose down
 # view logs
 $ docker-compose logs -f
 ```
-
 
 ## Captures
 
