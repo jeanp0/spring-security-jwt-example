@@ -4,8 +4,8 @@ POST http://localhost:8080/api/login
 content-type: application/json
 
 {
-  "username": "jeanpierms",
-  "password": "12345"
+  "username": "jeanpierm",
+  "password": "314159"
 }
 
 ### LOGIN USER bad
